@@ -1,0 +1,98 @@
+﻿@page "/"
+@inherits IndexPegiaBase
+
+<AuthorizeView>
+    <Authorized>
+        
+        <RadzenCard Style=@($"background-color: {BgColor}")>
+            <div class="form-grup row">
+                <div class="col-sm-3">
+                    <RadzenLabel>Proyecto: </RadzenLabel>
+                    <RadzenDropDown @bind-Value="@Proyecto" TextProperty="Value" ValueProperty="Key"
+                            Data="@ProyectosList" Class="rz-display-flex rz-display-xl-none" 
+                            Change="ElProyectoSelect" />
+                </div>
+                <div class="col-sm-9">
+                    <h4>@Titulo01</h4>
+                    @Titulo02
+                </div>
+            </div>
+        </RadzenCard>
+        @if(Proyecto != "")
+        {
+            <RadzenTabs Change="LeerTab" Style="@($"background-color: {BgColor}")">
+                <Tabs>
+                    @for(int i = 0; i < T1.Length-1; i++)
+                    {
+                        string titulo1 = T1[i];
+                        string texto1 = LeerTitulos();
+                        <RadzenTabsItem Text=@titulo1>
+                            @texto1 
+                        </RadzenTabsItem>
+                    }
+                
+                </Tabs>
+            </RadzenTabs>
+        }
+
+    </Authorized>
+    <NotAuthorized>
+        <RadzenCard Style="background-image: url('/Pages/Archivos/fondo1.jpg');">
+            <h1 style="text-align:center;">PEGIA</h1>
+            <br />
+            <h5 style="text-align:center;">Proyecto de desarrollo de Guarderias</h5>
+            <div style="background-color: #f0f0f0;padding: 20px;border: 1px solid #ccc;
+            border-radius: 10px;margin: 20px auto;max-width: 600px;text-align: left;">
+                Este sitio concentra la informacion necesaria 
+                para la creacion y operacion de guarderias en Mexico, desarrollando los
+                puntos financieros, legales y operacion segun la legislacion 2023.
+                <br />
+                <br />
+                Es necesario estar registrado, contactanos para esto "admin@@pegia.mx"
+                saludos.
+
+                <br />
+                <br />
+                Equipo de trabajo PEGIA.MX 
+                <br />
+                <a href="Identity/Account/Login"> Identificate </a>
+                
+            </div>
+            
+        </RadzenCard>
+        
+
+        
+    </NotAuthorized>    
+</AuthorizeView>
+
+
+
+@code {
+    
+    /* 
+     * <RadzenTabsItem Text="Resumen" Selected=@((string arg) => {LeerTab(tabt)} )>
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Factibilidad">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Resumen Ejecutivo">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Análisis del Mercado">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Análisis Técnico">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Estudio Ambiental y Social">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Análisis Financiero">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Plan de Negocios">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Análisis de Riesgos">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Cronograma y Planificación">
+                </RadzenTabsItem>
+                <RadzenTabsItem Text="Estudio Legal y Regulatorio">
+                </RadzenTabsItem>
+    */
+
+}
